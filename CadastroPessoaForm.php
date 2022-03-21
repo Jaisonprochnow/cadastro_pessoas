@@ -1,3 +1,27 @@
+<?php 
+    $id = $_GET['id'];
+    require_once("ListaPessoaDO.php");
+      
+    while($row = $dados->fetch_object()) {
+        if($row->idpessoa == $id) {
+            $nome = $row->nome;
+            $idade = $row->idade;
+            $email = $row->email;
+            $telefone = $row->celular;
+            $sexo = $row->sexo;
+        }
+    }
+
+    if ($sexo === 'masculino') {
+        $masculino = "checked";
+    }else if ($sexo === 'feminino') {
+        $feminino = 'checked';
+    }else {
+        $sexo = '';
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -31,13 +55,13 @@
                         <td>
                             <div class="nome">
                                 <label for="nome">Nome</label><br/>
-                                <input type="text" id="nome" name="nome" autocomplete="off" required name="nome" placeholder="informe seu nome">
+                                <input type="text" id="nome" name="nome" autocomplete="off" required name="nome"  value="<?php echo $nome?>" placeholder="informe seu nome">
                             </div>
                         </td>
                         <td>
                             <div class="idade">
                                 <label for="idade">Idade</label><br/>
-                                <input type="number" id="idade" name="idade" autocomplete="off" required name="idade" placeholder="informe sua idade">
+                                <input type="number" id="idade" name="idade" autocomplete="off" required name="idade" value="<?php echo $idade?>" placeholder="informe sua idade">
                             </div>
                         </td>
                     </tr>
@@ -45,13 +69,13 @@
                         <td>
                             <div class="email">
                                 <label for="email">E-mail</label><br/>
-                                <input type="email" id="email" name="email" autocomplete="off" required name="email" placeholder="informe seu e-mail">
+                                <input type="email" id="email" name="email" autocomplete="off" required name="email" value="<?php echo $email?>" placeholder="informe seu e-mail">
                             </div>
                         </td>
                         <td>
                             <div class="celular">
                                 <label for="celular">Celular</label><br/>
-                                <input type="number" id="celular" name="celular" autocomplete="off" required name="celular" placeholder="informe seu celular">
+                                <input type="number" id="celular" name="celular" autocomplete="off" required name="celular" value="<?php echo $telefone?>" placeholder="informe seu celular">
                             </div>
                         </td>
                     </tr>
@@ -59,8 +83,8 @@
                         <td>
                             <div class="sexo">
                                 <label for="sexo">Sexo</label><br/>
-                                    <input id="sexo" type="radio" name="sexo" value="masculino"/>Masculino
-                                    <input id="sexo" type="radio" name="sexo" value="feminino"/>Feminino
+                                    <input id="sexo" type="radio" name="sexo" value="masculino" <?php echo $masculino; ?>/>Masculino
+                                    <input id="sexo" type="radio" name="sexo" value="feminino" <?php echo $feminino; ?>>Feminino
                             </div>
                         </td>
                     </tr> 
